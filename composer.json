@@ -1,0 +1,44 @@
+{
+    "name": "huangdijia/laravel-web-soar",
+    "description": "Artisan soar in your browser",
+    "keywords": [
+        "huangdijia",
+        "web-soar",
+        "laravel",
+        "soar",
+        "debug",
+        "development"
+    ],
+    "homepage": "https://github.com/huangdijia/laravel-web-soar",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Huangdijia",
+            "email": "huangdijia@gmail.com",
+            "homepage": "https://hdj.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/support": "^5.8|^6.0",
+        "illuminate/cookie": "^5.8|^6.0",
+        "illuminate/session": "^5.8|^6.0",
+        "guanguans/soar-php": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Huangdijia\\WebSoar\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Huangdijia\\WebSoar\\WebSoarServiceProvider"
+            ]
+        }
+    }
+}
