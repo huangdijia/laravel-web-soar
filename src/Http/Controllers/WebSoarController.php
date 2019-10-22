@@ -4,6 +4,7 @@ namespace Huangdijia\WebSoar\Http\Controllers;
 
 use Guanguans\SoarPHP\Soar;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Markdown;
 
 class WebSoarController
 {
@@ -24,6 +25,10 @@ class WebSoarController
             ->all();
 
         $soar = new Soar($config);
+
+        if ($config['-report-type'] == 'markdown') {
+            return '<div class="markdown-body">' . Markdown::parse($soar->score($validated['code'])) . '</div>';
+        }
 
         return $soar->score($validated['code']);
     }

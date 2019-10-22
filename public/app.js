@@ -1800,6 +1800,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value']
@@ -15133,7 +15134,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "output" }, [
-    _c("pre", [_c("code", { domProps: { innerHTML: _vm._s(_vm.value) } })])
+    _c("code", { domProps: { innerHTML: _vm._s(_vm.value) } })
   ])
 }
 var staticRenderFns = []
