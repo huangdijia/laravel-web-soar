@@ -38,3 +38,9 @@ SOAR_TEST_DSN_PASSWORD=
 SOAR_LOG_OUTPUT=/tmp/soar.log
 SOAR_REPORT_TYPE=markdown
 ~~~
+
+## Run
+
+> http://youdomain.com/soar
+> or
+> http://youdomain.com/soar/explain
