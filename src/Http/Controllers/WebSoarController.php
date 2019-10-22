@@ -30,8 +30,9 @@ class WebSoarController
         $soar = new Soar($config);
         $body = '';
 
-        if (Str::is('*/explain', $request->server('HTTP_REFERER'))) {
-            $body = $soar->explain($validated['code'], 'md');
+        if (preg_match('/^explain/i', $validated['code'])) {
+            $validated['code'] = preg_replace('/^explain/i', '', $validated['code']);
+            $body              = $soar->explain($validated['code'], 'md');
         } else {
             $body = $soar->score($validated['code']);
         }
