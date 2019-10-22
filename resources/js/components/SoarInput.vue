@@ -3,9 +3,18 @@
 </template>
 
 <script>
-import 'codemirror/mode/php/php';
 
-import CodeMirror from 'codemirror';
+import "codemirror/theme/ambiance.css";
+import "codemirror/lib/codemirror.css";
+import "codemirror/addon/hint/show-hint.css";
+
+let CodeMirror = require("codemirror/lib/codemirror");
+require("codemirror/addon/edit/matchbrackets");
+require("codemirror/addon/selection/active-line");
+require("codemirror/mode/sql/sql");
+require("codemirror/addon/hint/show-hint");
+require("codemirror/addon/hint/sql-hint");
+
 import axios from 'axios';
 
 export default {
@@ -26,16 +35,28 @@ export default {
                 'Ctrl-Enter': () => {
                     this.executeCode();
                 },
+                'Ctrl': 'autocomplete'
             },
+            // smartIndent: true,
             indentWithTabs: true,
             lineNumbers: true,
             lineWrapping: true,
-            mode: 'text/x-php',
+            mode: 'text/x-sql',
             tabSize: 4,
-            theme: 'soar',
+            // theme: 'ambiance',
+            hintOptions: { //自定义提示选项
+              tables: {
+                users: ['name', 'score', 'birthDate'],
+                countries: ['name', 'population', 'size']
+              }
+            }
         };
 
         this.codeEditor = CodeMirror.fromTextArea(this.$refs.codeEditor, config);
+
+        this.codeEditor.on('cursorActivity', editor => function () {
+          editor.showHint();
+        });
 
         this.codeEditor.on('change', editor => {
             localStorage.setItem('soar-tool', editor.getValue());

@@ -17,7 +17,7 @@ class InstallCommand extends Command
     {
         $this->comment('Publishing Web Soar Assets...');
 
-        $this->callSilent('vendor:publish', ['--tag' => 'web-soar-assets']);
+        $this->callSilent('vendor:publish', ['--tag' => 'web-soar-assets', '--force']);
 
         $this->info('Web soar installed successfully.');
     }
