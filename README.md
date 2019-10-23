@@ -60,10 +60,10 @@ Gate::define('viewWebSoar', function($user = null) {
 
 ## Run
 
-* `http://youdomain.com/soar`
+* [http://youdomain.com/soar](http://youdomain.com/soar)
 
 ## Thanks
 
-* `https://github.com/XiaoMi/soar`
-* `https://github.com/guanguans/soar-php`
-* `https://github.com/spatie/laravel-web-tinker`
+* [soar](https://github.com/XiaoMi/soar)
+* [soar-php](https://github.com/guanguans/soar-php)
+* [laravel-web-tinker](https://github.com/spatie/laravel-web-tinker)
