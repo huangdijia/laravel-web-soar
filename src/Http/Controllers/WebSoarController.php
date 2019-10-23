@@ -13,23 +13,23 @@ class WebSoarController
 {
     public function index(Request $request)
     {
-        $tables = Cache::remember('web-soar:tables', 600, function () {
-            if (!config('web-soar.hint.enabled')) {
-                return [];
-            }
+        $tables = [];
 
-            $tables = DB::connection(config('web-soar.hint.connection', 'mysql'))
-                ->select('SHOW TABLES');
+        if (config('web-soar.hint.enabled')) {
+            $tables = Cache::remember('web-soar:tables', 600, function () {
+                $tables = DB::connection(config('web-soar.hint.connection', 'mysql'))
+                    ->select('SHOW TABLES');
 
-            return collect(array_map('reset', $tables))
-                ->reject(function($table) {
-                    return in_array($table, config('web-soar.hint.excludes', []));
-                })
-                ->mapWithKeys(function ($table) {
-                    return [$table => Schema::getColumnListing($table)];
-                })
-                ->all();
-        });
+                return collect(array_map('reset', $tables))
+                    ->reject(function ($table) {
+                        return in_array($table, config('web-soar.hint.excludes', []));
+                    })
+                    ->mapWithKeys(function ($table) {
+                        return [$table => Schema::getColumnListing($table)];
+                    })
+                    ->all();
+            });
+        }
 
         return view('web-soar::web-soar', [
             'path'   => config('web-soar.path'),
