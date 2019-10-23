@@ -36,6 +36,9 @@ php artisan web-soar:install
 ### Env
 
 ~~~env
+SOAR_ENABLED=true
+SOAR_HINT_ENABLED=true
+SOAR_HINT_CONNECTION=mysql
 SOAR_PATH=/usr/local/bin/soar # linux
 SOAR_TEST_DSN_HOST=127.0.0.1
 SOAR_TEST_DSN_PORT=3306
