@@ -6,6 +6,7 @@ use Guanguans\SoarPHP\Soar;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class WebSoarController
@@ -13,10 +14,12 @@ class WebSoarController
     public function index(Request $request)
     {
         $tables = Cache::remember('web-soar:tables', 600, function () {
-            return collect(array_map('reset', \DB::select('SHOW TABLES')))
+            $tables = DB::connection(config('web-soar.hint.connection', 'mysql'))
+                ->select('SHOW TABLES');
+
+            return collect(array_map('reset', $tables))
                 ->mapWithKeys(function ($table, $key) {
-                    $columns = Schema::getColumnListing($table);
-                    return [$table => $columns];
+                    return [$table => Schema::getColumnListing($table)];
                 })
                 ->all();
         });
