@@ -9,7 +9,6 @@ return [
         'connection' => env('SOAR_HINT_CONNECTION', 'mysql'),
         'excludes'   => [],
     ],
-    'output_modifier' => \Huangdijia\WebSoar\OutputModifiers\PrefixDateTime::class,
 
     /**
      * macOS

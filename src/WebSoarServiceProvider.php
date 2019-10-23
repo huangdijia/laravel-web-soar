@@ -6,7 +6,6 @@ use Guanguans\SoarPHP\Soar;
 use Huangdijia\WebSoar\Console\InstallCommand;
 use Huangdijia\WebSoar\Http\Controllers\WebSoarController;
 use Huangdijia\WebSoar\Http\Middleware\Authorize;
-use Huangdijia\WebSoar\OutputModifiers\OutputModifier;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Gate;
@@ -33,8 +32,6 @@ class WebSoarServiceProvider extends ServiceProvider
         }
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'web-soar');
-
-        $this->app->bind(OutputModifier::class, config('web-soar.output_modifier'));
 
         $this->registerRoutes();
         $this->registerWebSoarGate();
