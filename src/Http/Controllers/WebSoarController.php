@@ -3,7 +3,6 @@
 namespace Huangdijia\WebSoar\Http\Controllers;
 
 use Guanguans\SoarPHP\Soar;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Markdown;
 
@@ -16,27 +15,20 @@ class WebSoarController
         ]);
     }
 
-    public function execute(Request $request)
+    public function execute(Request $request, Soar $soar)
     {
         $validated = $request->validate([
             'code' => 'required',
         ]);
+        $pattern = '/^\s*explain\s*/i';
 
-        $config = collect(config('web-soar'))->filter(function ($item, $key) {
-            return substr($key, 0, 1) == '-';
-        })
-            ->all();
-
-        $soar = new Soar($config);
-        $body = '';
-
-        if (preg_match('/^explain/i', $validated['code'])) {
-            $validated['code'] = preg_replace('/^explain/i', '', $validated['code']);
+        if (preg_match($pattern, $validated['code'])) {
+            $validated['code'] = preg_replace($pattern, '', $validated['code']);
             $body              = $soar->explain($validated['code'], 'md');
         } else {
             $body = $soar->score($validated['code']);
         }
-        
+
         return '<div class="markdown-body">' . Markdown::parse($body) . '</div>';
 
     }

@@ -28,6 +28,8 @@ php artisan web-soar:install
 
 ## Configure
 
+### Env
+
 ~~~env
 SOAR_PATH=/usr/local/bin/soar # linux
 SOAR_TEST_DSN_HOST=127.0.0.1
@@ -39,8 +41,15 @@ SOAR_LOG_OUTPUT=/tmp/soar.log
 SOAR_REPORT_TYPE=markdown
 ~~~
 
+### Gate
+
+~~~php
+// AuthServiceProvider
+Gate::define('viewWebSoar', function($user = null) {
+    return app()->environment('local', 'dev');
+});
+~~~
+
 ## Run
 
-> http://youdomain.com/soar
-> or
-> http://youdomain.com/soar/explain
+* `http://youdomain.com/soar`

@@ -2,15 +2,17 @@
 
 namespace Huangdijia\WebSoar;
 
+use Guanguans\SoarPHP\Soar;
+use Huangdijia\WebSoar\Console\InstallCommand;
+use Huangdijia\WebSoar\Http\Controllers\WebSoarController;
+use Huangdijia\WebSoar\Http\Middleware\Authorize;
+use Huangdijia\WebSoar\OutputModifiers\OutputModifier;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Huangdijia\WebSoar\Console\InstallCommand;
-use Illuminate\Session\Middleware\StartSession;
-use Huangdijia\WebSoar\Http\Middleware\Authorize;
-use Illuminate\Cookie\Middleware\EncryptCookies;
-use Huangdijia\WebSoar\OutputModifiers\OutputModifier;
-use Huangdijia\WebSoar\Http\Controllers\WebSoarController;
+use Illuminate\Support\Str;
 
 class WebSoarServiceProvider extends ServiceProvider
 {
@@ -18,29 +20,42 @@ class WebSoarServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/web-soar.php' => config_path('web-soar.php'),
+                __DIR__ . '/../config/web-soar.php' => config_path('web-soar.php'),
             ], 'config');
 
             $this->publishes([
-                __DIR__.'/../resources/views' => base_path('resources/views/vendor/web-soar'),
+                __DIR__ . '/../resources/views' => base_path('resources/views/vendor/web-soar'),
             ], 'views');
 
             $this->publishes([
-                __DIR__.'/../public' => public_path('vendor/web-soar'),
+                __DIR__ . '/../public' => public_path('vendor/web-soar'),
             ], 'web-soar-assets');
         }
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'web-soar');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'web-soar');
 
         $this->app->bind(OutputModifier::class, config('web-soar.output_modifier'));
 
-        $this->registerRoutes()
-            ->registerWebSoarGate();
+        $this->registerRoutes();
+        $this->registerWebSoarGate();
     }
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/web-soar.php', 'web-soar');
+        $this->mergeConfigFrom(__DIR__ . '/../config/web-soar.php', 'web-soar');
+
+        $this->app->when(Soar::class)
+            ->needs('$config')
+            ->give(function () {
+                return collect(config('web-soar'))
+                    ->filter(function ($item, $key) {
+                        return Str::startsWith($key, '-');
+                    })
+                    ->all();
+            });
+
+        $this->app->singleton(Soar::class);
+        $this->app->alias(Soar::class, 'soar');
 
         $this->commands(InstallCommand::class);
     }
@@ -55,17 +70,13 @@ class WebSoarServiceProvider extends ServiceProvider
             Route::get('/', [WebSoarController::class, 'index']);
             Route::post('/', [WebSoarController::class, 'execute']);
         });
-
-        return $this;
     }
 
     protected function registerWebSoarGate()
     {
         Gate::define('viewWebSoar', function ($user = null) {
-            // return app()->environment('local');
-            return true;
+            return app()->environment('local');
+            // return true;
         });
-
-        return $this;
     }
 }
