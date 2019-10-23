@@ -18,7 +18,10 @@ class WebSoarController
                 ->select('SHOW TABLES');
 
             return collect(array_map('reset', $tables))
-                ->mapWithKeys(function ($table, $key) {
+                ->reject(function($table) {
+                    return in_array($table, config('web-soar.hint.excludes', []));
+                })
+                ->mapWithKeys(function ($table) {
                     return [$table => Schema::getColumnListing($table)];
                 })
                 ->all();
