@@ -14,6 +14,10 @@ class WebSoarController
     public function index(Request $request)
     {
         $tables = Cache::remember('web-soar:tables', 600, function () {
+            if (!config('web-soar.hint.enabled')) {
+                return [];
+            }
+
             $tables = DB::connection(config('web-soar.hint.connection', 'mysql'))
                 ->select('SHOW TABLES');
 
