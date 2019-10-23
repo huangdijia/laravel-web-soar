@@ -3,6 +3,8 @@
 [![Latest Stable Version](https://poser.pugx.org/huangdijia/laravel-web-soar/version.png)](https://packagist.org/packages/huangdijia/laravel-web-soar)
 [![Total Downloads](https://poser.pugx.org/huangdijia/laravel-web-soar/d/total.png)](https://packagist.org/packages/huangdijia/laravel-web-soar)
 
+![screenshots](./screenshots.jpg)
+
 ## Installation
 
 ~~~bash
