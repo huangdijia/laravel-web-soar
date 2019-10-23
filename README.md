@@ -1,5 +1,8 @@
 # laravel-web-soar
 
+[![Latest Stable Version](https://poser.pugx.org/huangdijia/laravel-web-soar/version.png)](https://packagist.org/packages/huangdijia/laravel-web-soar)
+[![Total Downloads](https://poser.pugx.org/huangdijia/laravel-web-soar/d/total.png)](https://packagist.org/packages/huangdijia/laravel-web-soar)
+
 ## Installation
 
 ~~~bash
@@ -53,3 +56,9 @@ Gate::define('viewWebSoar', function($user = null) {
 ## Run
 
 * `http://youdomain.com/soar`
+
+## Thanks
+
+* `https://github.com/XiaoMi/soar`
+* `https://github.com/guanguans/soar-php`
+* `https://github.com/spatie/laravel-web-tinker`
