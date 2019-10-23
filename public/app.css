@@ -613,7 +613,7 @@ code {
   background-color: rgba(150, 120, 200, .3);
 }
 
-.CodeMirror.cm-s-soar {
+.CodeMirror.cm-s-tinker {
   height: 100%;
   font-family: IBM Plex Mono, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
   line-height: 1.5;
@@ -621,64 +621,65 @@ code {
   color: inherit;
 }
 
-.CodeMirror.cm-s-soar .CodeMirror-cursor {
+.CodeMirror.cm-s-tinker .CodeMirror-cursor {
     border-color: var(--color-text);
   }
 
-.CodeMirror.cm-s-soar .CodeMirror-lines {
+.CodeMirror.cm-s-tinker .CodeMirror-lines {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
 
-.CodeMirror.cm-s-soar .CodeMirror-gutters {
+.CodeMirror.cm-s-tinker .CodeMirror-gutters {
     background-color: var(--color-gutter);
     padding-left: .5rem;
     border-right-width: 2px;
     border-color: var(--color-line);
   }
 
-.CodeMirror.cm-s-soar .CodeMirror-linenumber {
+.CodeMirror.cm-s-tinker .CodeMirror-linenumber {
     color: var(--color-dimmed);
     font-size: 1rem;
   }
 
-.CodeMirror.cm-s-soar .CodeMirror pre {
+.CodeMirror.cm-s-tinker .CodeMirror pre {
     font-family: IBM Plex Mono, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     white-space: nowrap;
   }
 
-.CodeMirror.cm-s-soar .CodeMirror-selected {
+.CodeMirror.cm-s-tinker .CodeMirror-selected {
     background: rgba(150, 120, 200, .2);
   }
 
-.CodeMirror.cm-s-soar .CodeMirror-focused .CodeMirror-selected {
+.CodeMirror.cm-s-tinker .CodeMirror-focused .CodeMirror-selected {
     background: rgba(150, 120, 200, .3);
   }
 
-.CodeMirror.cm-s-soar .cm-comment {
+.CodeMirror.cm-s-tinker .cm-comment {
     color: var(--color-dimmed);
     font-style: italic;
   }
 
-.CodeMirror.cm-s-soar .cm-number {
+.CodeMirror.cm-s-tinker .cm-number {
     color: var(--color-number);
   }
 
-.CodeMirror.cm-s-soar .cm-string {
+.CodeMirror.cm-s-tinker .cm-string {
     color: var(--color-string);
   }
 
-.CodeMirror.cm-s-soar .cm-variable-2 {
+.CodeMirror.cm-s-tinker .cm-variable-2 {
     color: var(--color-variable);
   }
 
-.CodeMirror.cm-s-soar .cm-operator {
+.CodeMirror.cm-s-tinker .cm-operator {
     color: var(--color-operator);
   }
 
-.CodeMirror.cm-s-soar .cm-keyword {
+.CodeMirror.cm-s-tinker .cm-keyword {
     color: var(--color-keyword);
     font-weight: 600;
+    color: #708;
   }
 
 @font-face {

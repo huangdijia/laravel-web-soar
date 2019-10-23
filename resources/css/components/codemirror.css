@@ -1,4 +1,4 @@
-.CodeMirror.cm-s-soar {
+.CodeMirror.cm-s-tinker {
     @apply h-full;
     @apply font-code;
     @apply leading-normal;
@@ -61,5 +61,6 @@
     & .cm-keyword {
         @apply text-keyword;
         @apply font-bold;
+        color: #708;
     }
 }

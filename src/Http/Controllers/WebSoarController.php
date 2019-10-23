@@ -5,13 +5,25 @@ namespace Huangdijia\WebSoar\Http\Controllers;
 use Guanguans\SoarPHP\Soar;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Markdown;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Schema;
 
 class WebSoarController
 {
     public function index(Request $request)
     {
+        $tables = Cache::remember('web-soar:tables', 600, function () {
+            return collect(array_map('reset', \DB::select('SHOW TABLES')))
+                ->mapWithKeys(function ($table, $key) {
+                    $columns = Schema::getColumnListing($table);
+                    return [$table => $columns];
+                })
+                ->all();
+        });
+
         return view('web-soar::web-soar', [
-            'path' => config('web-soar.path'),
+            'path'   => config('web-soar.path'),
+            'tables' => $tables,
         ]);
     }
 

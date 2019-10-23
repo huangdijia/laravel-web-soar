@@ -4,18 +4,13 @@
 
 <script>
 
-import "codemirror/theme/ambiance.css";
-import "codemirror/lib/codemirror.css";
 import "codemirror/addon/hint/show-hint.css";
-
-let CodeMirror = require("codemirror/lib/codemirror");
-require("codemirror/addon/edit/matchbrackets");
-require("codemirror/addon/selection/active-line");
-require("codemirror/mode/sql/sql");
-require("codemirror/addon/hint/show-hint");
-require("codemirror/addon/hint/sql-hint");
-
+import 'codemirror/mode/sql/sql';
+import "codemirror/addon/hint/show-hint";
+import "codemirror/addon/hint/sql-hint";
+import CodeMirror from 'codemirror';
 import axios from 'axios';
+
 
 export default {
     data: () => ({
@@ -35,30 +30,40 @@ export default {
                 'Ctrl-Enter': () => {
                     this.executeCode();
                 },
-                'Ctrl': 'autocomplete'
+                "F2": "autocomplete"
             },
-            // smartIndent: true,
+            smartIndent: true,
             indentWithTabs: true,
+            matchBrackets: true,
             lineNumbers: true,
             lineWrapping: true,
-            mode: 'text/x-sql',
+            mode: "text/x-mysql",
             tabSize: 4,
-            // theme: 'ambiance',
+            theme: 'tinker',
             hintOptions: { //自定义提示选项
-              tables: {
-                users: ['name', 'score', 'birthDate'],
-                countries: ['name', 'population', 'size']
-              }
+              "completeSingle": false,
+              "completeOnSingleClick": true,
+              "async": true,
+              tables: window.TABLES || {},
+            },
+            lint: {
+                "getAnnotations": CodeMirror.sqlLint,
+                "async": true,
+                "lintOptions": {}
             }
         };
 
         this.codeEditor = CodeMirror.fromTextArea(this.$refs.codeEditor, config);
 
-        this.codeEditor.on('cursorActivity', editor => function () {
-          editor.showHint();
-        });
+        // this.codeEditor.on('cursorActivity', editor => {
+        //     editor.showHint();
+        // });
 
-        this.codeEditor.on('change', editor => {
+        this.codeEditor.on('change', (editor, change) => {
+            if (change.origin !== 'complete' && /\w|\./g.test(change.text[0])) {
+                editor.showHint();
+            }
+
             localStorage.setItem('soar-tool', editor.getValue());
         });
 
@@ -88,4 +93,5 @@ export default {
 };
 </script>
 
-<style src="codemirror/lib/codemirror.css" /> <style src="codemirror/theme/idea.css" />
+<style src="codemirror/lib/codemirror.css" />
+<style src="codemirror/theme/idea.css" />

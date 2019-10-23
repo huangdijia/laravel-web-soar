@@ -17,6 +17,9 @@
     <soar path="{{ $path }}"></soar>
 </div>
 
+<script>
+window.TABLES = @json($tables);
+</script>
 <script src="{{ asset(mix('app.js', 'vendor/web-soar')) }}"></script>
 </body>
 </html>
