@@ -1704,7 +1704,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
@@ -1734,7 +1733,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             matchBrackets: true,
             lineNumbers: true,
             lineWrapping: true,
-            // mode: 'text/x-sql',
             mode: "text/x-mysql",
             tabSize: 4,
             theme: 'tinker',

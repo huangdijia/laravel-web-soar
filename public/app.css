@@ -1658,6 +1658,34 @@ code {
   padding-left: 128px !important;
 }
 
+/* dark */
+
+:root.theme-dark .markdown-body * {
+  color: #bbb;
+}
+
+:root.theme-dark .markdown-body h2 {
+  border-color: #bbb;
+}
+
+:root.theme-dark .markdown-body pre code {
+  color: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root.theme-auto .markdown-body * {
+    color: #bbb;
+  }
+
+  :root.theme-auto .markdown-body h2 {
+    border-color: #bbb;
+  }
+
+  :root.theme-auto .markdown-body pre code {
+    color: #000;
+  }
+}
+
 .layout {
   position: fixed;
   height: 100vh;
