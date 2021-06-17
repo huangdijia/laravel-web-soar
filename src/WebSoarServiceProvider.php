@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * This file is part of laravel-web-soar.
+ *
+ * @link     https://github.com/huangdijia/laravel-web-soar
+ * @document https://github.com/huangdijia/laravel-web-soar/blob/master/README.md
+ * @contact  huangdijia@gmail.com
+ */
 namespace Huangdijia\WebSoar;
 
 use Guanguans\SoarPHP\Soar;

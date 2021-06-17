@@ -1,17 +1,31 @@
 <?php
-
+/**
+ * This file is part of laravel-web-soar.
+ *
+ * @link     https://github.com/huangdijia/laravel-web-soar
+ * @document https://github.com/huangdijia/laravel-web-soar/blob/master/README.md
+ * @contact  huangdijia@gmail.com
+ */
 namespace Huangdijia\WebSoar\Http\Controllers;
 
+use Guanguans\SoarPHP\Exceptions\InvalidArgumentException;
 use Guanguans\SoarPHP\Soar;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Markdown;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use RuntimeException;
 
 class WebSoarController
 {
-    public function index(Request $request)
+    /**
+     * @throws BindingResolutionException
+     * @return View
+     */
+    public function index()
     {
         $tables = [];
 
@@ -32,11 +46,16 @@ class WebSoarController
         }
 
         return view('web-soar::web-soar', [
-            'path'   => config('web-soar.path'),
+            'path' => config('web-soar.path'),
             'tables' => $tables,
         ]);
     }
 
+    /**
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
+     * @return string
+     */
     public function execute(Request $request, Soar $soar)
     {
         $validated = $request->validate([
@@ -46,12 +65,11 @@ class WebSoarController
 
         if (preg_match($pattern, $validated['code'])) {
             $validated['code'] = preg_replace($pattern, '', $validated['code']);
-            $body              = $soar->explain($validated['code'], 'md');
+            $body = $soar->explain($validated['code'], 'md');
         } else {
             $body = $soar->score($validated['code']);
         }
 
         return '<div class="markdown-body">' . Markdown::parse($body) . '</div>';
-
     }
 }
