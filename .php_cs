@@ -4,7 +4,7 @@ $header = <<<'EOF'
 This file is part of laravel-web-soar.
 
 @link     https://github.com/huangdijia/laravel-web-soar
-@document https://github.com/huangdijia/laravel-web-soar/blob/master/README.md
+@document https://github.com/huangdijia/laravel-web-soar/blob/2.x/README.md
 @contact  huangdijia@gmail.com
 EOF;
 
