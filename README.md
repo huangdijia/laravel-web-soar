@@ -15,8 +15,9 @@ composer require huangdijia/laravel-web-soar --dev
 ### Publish
 
 ~~~bash
-php artisan vendor:publish --provider="Huangdijia\WebSoar\WebSoarServiceProvider"
+# php artisan vendor:publish --provider="Huangdijia\WebSoar\WebSoarServiceProvider"
 php artisan web-soar:install
+php artisan web-soar:publish
 ~~~
 
 ### Download soar

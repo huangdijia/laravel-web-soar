@@ -10,27 +10,30 @@ namespace Huangdijia\WebSoar\Console;
 
 use Illuminate\Console\Command;
 
-class InstallCommand extends Command
+class PublishCommand extends Command
 {
     /**
      * @var string
      */
-    protected $signature = 'web-soar:install {--force}';
+    protected $signature = 'web-soar:publish {--force}';
 
     /**
      * @var string
      */
-    protected $description = 'Install config of the Web Soar';
+    protected $description = 'Publish all of the Web Soar resources';
 
     public function handle()
     {
-        $this->comment('Publishing Web Soar Assets...');
-
         $this->callSilent('vendor:publish', [
-            '--tag' => 'config',
+            '--tag' => 'view',
             '--force' => (bool) $this->option('force'),
         ]);
 
-        $this->info('Web soar installed successfully.');
+        $this->callSilent('vendor:publish', [
+            '--tag' => 'web-soar-assets',
+            '--force' => (bool) $this->option('force'),
+        ]);
+
+        $this->info('Web soar published successfully.');
     }
 }

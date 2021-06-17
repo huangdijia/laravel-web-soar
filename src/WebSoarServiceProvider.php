@@ -10,6 +10,7 @@ namespace Huangdijia\WebSoar;
 
 use Guanguans\SoarPHP\Soar;
 use Huangdijia\WebSoar\Console\InstallCommand;
+use Huangdijia\WebSoar\Console\PublishCommand;
 use Huangdijia\WebSoar\Http\Controllers\WebSoarController;
 use Huangdijia\WebSoar\Http\Middleware\Authorize;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -61,6 +62,7 @@ class WebSoarServiceProvider extends ServiceProvider
         $this->app->alias(Soar::class, 'soar');
 
         $this->commands(InstallCommand::class);
+        $this->commands(PublishCommand::class);
     }
 
     protected function registerRoutes()
