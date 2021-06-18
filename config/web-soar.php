@@ -16,18 +16,7 @@ return [
         'excludes' => [],
     ],
 
-    /*
-     * macOS
-     * wget https://github.com/XiaoMi/soar/releases/download/0.11.0/soar.darwin-amd64 -O vendor/bin/soar
-     * chmod +x vendor/bin/soar
-     * linux
-     * wget https://github.com/XiaoMi/soar/releases/download/0.11.0/soar.linux-amd64 -O vendor/bin/soar
-     * chmod +x vendor/bin/soar
-     * windows
-     * wget https://github.com/XiaoMi/soar/releases/download/0.11.0/soar.windows-amd64 -O vendor/bin/soar
-     * chmod +x vendor/bin/soar
-     */
-    '-soar-path' => env('SOAR_PATH', app()->basePath('vendor/bin/soar')),
+    '-soar-path' => env('SOAR_PATH', base_path('vendor/bin/soar')),
     '-test-dsn' => [
         'host' => env('SOAR_TEST_DSN_HOST', '127.0.0.1'),
         'port' => env('SOAR_TEST_DSN_PORT', '3306'),
