@@ -8,10 +8,13 @@
  */
 namespace Huangdijia\WebSoar\Console;
 
+use Huangdijia\WebSoar\Console\Concerns\InstallSoar;
 use Illuminate\Console\Command;
 
 class InstallCommand extends Command
 {
+    use InstallSoar;
+
     /**
      * @var string
      */
@@ -25,6 +28,10 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->comment('Publishing Web Soar Assets...');
+
+        if (! $this->isSoarInstalled()) {
+            $this->downloadSoarBinary();
+        }
 
         $this->callSilent('vendor:publish', [
             '--tag' => 'config',
