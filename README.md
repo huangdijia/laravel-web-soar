@@ -1,5 +1,6 @@
 # laravel-web-soar
 
+[![Latest Test](https://github.com/huangdijia/laravel-web-soar/workflows/tests/badge.svg)](https://github.com/huangdijia/laravel-web-soar/actions)
 [![Latest Stable Version](https://poser.pugx.org/huangdijia/laravel-web-soar/version.png)](https://packagist.org/packages/huangdijia/laravel-web-soar)
 [![Total Downloads](https://poser.pugx.org/huangdijia/laravel-web-soar/d/total.png)](https://packagist.org/packages/huangdijia/laravel-web-soar)
 [![GitHub license](https://img.shields.io/github/license/huangdijia/laravel-web-soar)](https://github.com/huangdijia/laravel-web-soar)
