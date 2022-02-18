@@ -1,5 +1,13 @@
 <?php
 
+declare(strict_types=1);
+/**
+ * This file is part of laravel-web-soar.
+ *
+ * @link     https://github.com/huangdijia/laravel-web-soar
+ * @document https://github.com/huangdijia/laravel-web-soar/blob/2.x/README.md
+ * @contact  huangdijia@gmail.com
+ */
 $header = <<<'EOF'
 This file is part of laravel-web-soar.
 
@@ -8,7 +16,7 @@ This file is part of laravel-web-soar.
 @contact  huangdijia@gmail.com
 EOF;
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRiskyAllowed(true)
     ->setRules([
         '@PSR2' => true,
@@ -16,19 +24,19 @@ return PhpCsFixer\Config::create()
         '@DoctrineAnnotation' => true,
         '@PhpCsFixer' => true,
         'header_comment' => [
-            'commentType' => 'PHPDoc',
+            'comment_type' => 'PHPDoc',
             'header' => $header,
             'separate' => 'none',
             'location' => 'after_declare_strict',
         ],
         'array_syntax' => [
-            'syntax' => 'short'
+            'syntax' => 'short',
         ],
         'list_syntax' => [
-            'syntax' => 'short'
+            'syntax' => 'short',
         ],
         'concat_space' => [
-            'spacing' => 'one'
+            'spacing' => 'one',
         ],
         'blank_line_before_statement' => [
             'statements' => [
@@ -37,7 +45,7 @@ return PhpCsFixer\Config::create()
         ],
         'general_phpdoc_annotation_remove' => [
             'annotations' => [
-                'author'
+                'author',
             ],
         ],
         'ordered_imports' => [
@@ -66,7 +74,7 @@ return PhpCsFixer\Config::create()
         ],
         'class_attributes_separation' => true,
         'combine_consecutive_unsets' => true,
-        'declare_strict_types' => false,
+        'declare_strict_types' => true,
         'linebreak_after_opening_tag' => true,
         'lowercase_static_reference' => true,
         'no_useless_else' => true,
@@ -82,6 +90,7 @@ return PhpCsFixer\Config::create()
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
+            ->exclude('bin')
             ->exclude('public')
             ->exclude('runtime')
             ->exclude('vendor')
